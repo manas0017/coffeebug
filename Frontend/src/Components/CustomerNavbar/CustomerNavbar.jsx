@@ -28,9 +28,9 @@ const CustomerNavbar = () => {
     <nav className="flex justify-between items-center px-10 py-4 shadow-md bg-white">
       {/* Logo as a round image */}
       <img 
-        src="/logo.png" // Replace with your actual image path
+        src="/img/Logo.png" // Replace with your actual image path
         alt="Logo" 
-        className="w-12 h-12 rounded-full object-cover cursor-pointer"
+        className="w-22 h-22 rounded-full object-cover cursor-pointer"
         onClick={() => navigate("/")} // Navigate to homepage on click
       />
 
