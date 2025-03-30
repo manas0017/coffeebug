@@ -10,58 +10,6 @@ const isAdmin = (req, res, next) => {
 
   next(); // Allow admins to proceed
 };
-
-// Create a new custom product (Admin only)
-// const createCustomProduct = (req, res) => {
-//   const { customProductName, sizeID, ingredients } = req.body; // ingredients should be an array of { ingredientID, quantity }
-
-//   if (!customProductName || !sizeID || !ingredients || !ingredients.length) {
-//     return res.status(400).json({ message: 'Custom product name, size, and ingredients are required.' });
-//   }
-
-//   pool.getConnection((err, connection) => {
-//     if (err) {
-//       console.error('Database connection error:', err);
-//       return res.status(500).send('Database connection error');
-//     }
-
-//     connection.beginTransaction(async (transactionErr) => {
-//       if (transactionErr) {
-//         connection.release();
-//         console.error('Transaction error:', transactionErr);
-//         return res.status(500).send('Transaction error');
-//       }
-
-//       try {
-//         // Insert into CustomProduct table
-//         const [customProductResult] = await connection.query(
-//           'INSERT INTO CustomProduct (CustomProductName, SizeID) VALUES (?, ?)',
-//           [customProductName, sizeID]
-//         );
-
-//         const customProductID = customProductResult.insertId;
-
-//         // Insert each ingredient into CustomProductIngredients table
-//         for (const ingredient of ingredients) {
-//           await connection.query(
-//             'INSERT INTO CustomProductIngredients (CustomProductID, IngredientID, Quantity) VALUES (?, ?, ?)',
-//             [customProductID, ingredient.ingredientID, ingredient.quantity]
-//           );
-//         }
-
-//         connection.commit();
-//         res.status(201).json({ message: 'Custom product created successfully', customProductID });
-//       } catch (error) {
-//         connection.rollback();
-//         console.error('Error creating custom product:', error);
-//         res.status(500).send('Error creating custom product');
-//       } finally {
-//         connection.release();
-//       }
-//     });
-//   });
-// };
-
 const createCustomProduct = async (req, res) => {
   try {
       const { name, description, price, size, ingredients, category, available } = req.body;
@@ -219,14 +167,6 @@ const getCustomProductById = (req, res) => {
     }
   );
 };
-
-
-
-
-
-
-
-
 
 module.exports = {
   createCustomProduct,
